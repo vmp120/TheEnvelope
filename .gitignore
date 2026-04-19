@@ -1,0 +1,27 @@
+data/raw/*
+data/processed/*
+data/merged/*
+
+# keep folder structure
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+!data/merged/.gitkeep
+
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+
+*.log
+*.tmp
+
+.env
+.env.*

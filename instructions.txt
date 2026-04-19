@@ -1,0 +1,2 @@
+1. Run data_collection.py (collects and merges data from all 3 sources)
+2. Run etl.py (cleans data)
