@@ -278,16 +278,11 @@ def load_imdb(data_dir="data/raw"):
     )
     basics = basics[basics["titleType"] == "movie"].drop(columns="titleType")
 
-    ratings = pd.read_csv(
-        _imdb_path("title.ratings.tsv", data_dir),
+    ratings = pd.read_csv(_imdb_path("title.ratings.tsv", data_dir),
         sep="\t", na_values="\\N"
     )
 
-    crew = pd.read_csv(
-        _imdb_path("title.crew.tsv", data_dir),
-        sep="\t", na_values="\\N",
-        usecols=["tconst", "directors"]
-    )
+    crew = pd.read_csv(_imdb_path("title.crew.tsv", data_dir),sep="\t", na_values="\\N",usecols=["tconst", "directors"])
 
     df = basics.merge(ratings, on="tconst", how="left").merge(crew, on="tconst", how="left")
 
@@ -336,22 +331,9 @@ def collect_all(years=range(2010, 2025)):
 
     merged = tmdb_df.merge(imdb_df, on="imdb_id", how="left", suffixes=("_tmdb", "_imdb"))
 
-    oscars_per_film = (
-        oscars_df.groupby("film")
-        .agg(
-            nominated=("nominated", "max"),
-            oscar_wins=("winner", "sum"),
-            oscar_nominations=("film", "count"),
-        )
-        .reset_index()
-    )
+    oscars_per_film = (oscars_df.groupby("film").agg(nominated=("nominated", "max"),oscar_wins=("winner", "sum"),oscar_nominations=("film", "count"),).reset_index())
 
-    merged = merged.merge(
-        oscars_per_film,
-        left_on="title_tmdb",
-        right_on="film",
-        how="left"
-    )
+    merged = merged.merge(oscars_per_film, left_on="title_tmdb", right_on="film", how="left")
 
     merged["nominated"] = merged["nominated"].fillna(0).astype(int)
     merged["oscar_wins"] = merged["oscar_wins"].fillna(0).astype(int)

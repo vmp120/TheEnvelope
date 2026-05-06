@@ -4,7 +4,7 @@ import numpy as np
 
 def load_merged(path="data/merged/merged_dataset.csv") -> pd.DataFrame:
     if not os.path.exists(path):
-        raise FileNotFoundError(
+        raise FileNotFoundError (
             f"Merged dataset not found at '{path}'.\n"
             "Run data_collection.py first."
         )

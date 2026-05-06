@@ -1,6 +1,9 @@
-data/raw/*
-data/processed/*
-data/merged/*
+# data files
+data/raw/*.csv
+data/raw/*.tsv
+data/raw/*.gz
+data/processed/*.csv
+data/merged/*.csv
 
 # keep folder structure
 !data/raw/.gitkeep
