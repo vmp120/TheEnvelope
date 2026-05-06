@@ -26,7 +26,7 @@ Each year, thousands of movies are released, yet only a small percentage receive
 
 ### 1. Install libraries
 
-pip install -r requirements.txt
+`pip install -r requirements.txt`
 
 ### 2. Collect data
 
@@ -36,13 +36,13 @@ Downloads IMDb files, Oscars CSV, and fetches movie metadata from the TMDb API f
 
 ### 3. Run ETL to clean and transform
 
-python src/etl.py
+`python src/etl.py`
 
 Filters to feature films, handles missing budget/revenue using year-based median, removes duplicates, and standardizes column types
 
 ### 4. Engineer features
 
-python src/features.py
+`python src/features.py`
 
 Builds the feature dataset used for modeling, including:
 - Log-scaled budget, revenue, and vote counts
